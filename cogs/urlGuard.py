@@ -47,8 +47,6 @@ class UrlGuard(commands.Cog):
         channel = message.channel
         guildId = message.guild.id
 
-        print(guildId)
-        print(message)
         if guildId != self.guildId:
             return
 
