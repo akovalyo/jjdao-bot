@@ -37,6 +37,7 @@ class UrlGuard(commands.Cog):
             "smashkarts.io",
             "pokernow.club",
             "discord.com",
+            "gfycat.com",
         ]
         self.twitterRaidRoom = 1062363541631414344
         self.logChannelId = 1062582344227233872
