@@ -37,7 +37,7 @@ class UpdatePrice(commands.Cog):
 
         jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
         solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
-        rascalsChannel = self.bot.get_channel(self.rascalsChannelId)
+        rascalsChannel = self.bot.get_channel(self.rascalsId)
         runawayChannel = self.bot.get_channel(self.runawayId)
 
         if jellyUsdChannel:
