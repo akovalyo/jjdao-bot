@@ -11,6 +11,7 @@ class UpdatePrice(commands.Cog):
         self.jellyUsdChannelId = 1067492731397603370
         self.solUsdChannelId = 1067492877556523029
         self.collectionChannelId = 1069784203643850845
+        self.runawayId = 1077278664221278238
         self.update_left.start()
         # self.update_right.start()
 
@@ -37,6 +38,7 @@ class UpdatePrice(commands.Cog):
         jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
         solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
         collectionChannel = self.bot.get_channel(self.collectionChannelId)
+        runawayChannel = self.bot.get_channel(self.runawayId)
 
         if jellyUsdChannel:
             self.cp.updateJellyUsdPrice()
@@ -58,13 +60,22 @@ class UpdatePrice(commands.Cog):
             except Exception as e:
                 print(f"{e} - UpdatePrice-solChannel error")
 
-            if collectionChannel:
-                self.me.updateCollectionStats()
-                try:
-                    collectionStr = f"Rascals: ◎{(self.me.collectionFP / 10**9):.2f} ({self.me.collectionListings})"
-                    await collectionChannel.edit(name=collectionStr)
-                except Exception as e:
-                    print(f"{e} - UpdatePrice-collection channel")
+        if collectionChannel:
+            self.me.updateCollectionStats()
+            try:
+                collectionStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
+                await collectionChannel.edit(name=collectionStr)
+            except Exception as e:
+                print(f"{e} - UpdatePrice-collection channel")
+
+        if runawayChannel:
+            try:
+                collectionStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
+                await collectionChannel.edit(name=collectionStr)
+            except Exception as e:
+                print(f"{e} - UpdatePrice-collection channel")
+
+        
 
     @update_left.before_loop
     async def before_update_left(self):
