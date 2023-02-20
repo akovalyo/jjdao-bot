@@ -66,14 +66,14 @@ class UpdatePrice(commands.Cog):
                 rascalsStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
                 await rascalsChannel.edit(name=rascalsStr)
             except Exception as e:
-                print(f"{e} - UpdatePrice-collection channel")
+                print(f"{e} - UpdatePrice-rascals channel")
 
         if runawayChannel:
             try:
                 runawayStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
                 await runawayChannel.edit(name=runawayStr)
             except Exception as e:
-                print(f"{e} - UpdatePrice-collection channel")
+                print(f"{e} - UpdatePrice-runaway channel")
 
         
 
