@@ -10,7 +10,7 @@ class UpdatePrice(commands.Cog):
         self.bot = bot
         self.jellyUsdChannelId = 1067492731397603370
         self.solUsdChannelId = 1067492877556523029
-        self.collectionChannelId = 1069784203643850845
+        self.rascalsId = 1069784203643850845
         self.runawayId = 1077278664221278238
         self.update_left.start()
         # self.update_right.start()
@@ -37,7 +37,7 @@ class UpdatePrice(commands.Cog):
 
         jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
         solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
-        collectionChannel = self.bot.get_channel(self.collectionChannelId)
+        rascalsChannel = self.bot.get_channel(self.rascalsChannelId)
         runawayChannel = self.bot.get_channel(self.runawayId)
 
         if jellyUsdChannel:
@@ -60,18 +60,18 @@ class UpdatePrice(commands.Cog):
             except Exception as e:
                 print(f"{e} - UpdatePrice-solChannel error")
 
-        if collectionChannel:
+        if rascalsChannel:
             self.me.updateCollectionStats()
             try:
-                collectionStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
-                await collectionChannel.edit(name=collectionStr)
+                rascalsStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
+                await rascalsChannel.edit(name=rascalsStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-collection channel")
 
         if runawayChannel:
             try:
-                collectionStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
-                await collectionChannel.edit(name=collectionStr)
+                runawayStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
+                await runawayChannel.edit(name=runawayStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-collection channel")
 
