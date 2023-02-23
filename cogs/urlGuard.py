@@ -38,8 +38,8 @@ class UrlGuard(commands.Cog):
             "pokernow.club",
             "discord.com",
             "gfycat.com",
-            "cdn.discordapp.com",
-            "oaidalleapiprodscus.blob.core.windows.net",
+            "discordapp.com",
+            "oaidalleapiprodscus.blob.core.windows.net"
         ]
         self.twitterRaidRoom = 1062363541631414344
         self.logChannelId = 1062582344227233872
