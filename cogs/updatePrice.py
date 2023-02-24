@@ -69,6 +69,7 @@ class UpdatePrice(commands.Cog):
        #         print(f"{e} - UpdatePrice-rascals channel")
 
         if runawayChannel:
+            self.me.updateCollectionStats()
             try:
                 runawayStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
                 await runawayChannel.edit(name=runawayStr)
