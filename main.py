@@ -17,7 +17,7 @@ def main():
         for guild in guilds:
             print(f"{guild.name} - {guild.id}")
 
-    bot.load_extension("cogs.urlGuard")
+    #bot.load_extension("cogs.urlGuard")
     #bot.load_extension("cogs.updatePrice")
     bot.run(token)
 
