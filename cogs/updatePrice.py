@@ -29,7 +29,7 @@ class UpdatePrice(commands.Cog):
     #         )
     #     )
 
-    @tasks.loop(seconds=320)
+    @tasks.loop(seconds=480)
     async def update_left(self):
         jellyUsdStr = "Jelly/SOL: -"
         solUsdStr = "SOL/USD: -"
@@ -37,7 +37,7 @@ class UpdatePrice(commands.Cog):
 
         jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
         solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
-        rascalsChannel = self.bot.get_channel(self.rascalsId)
+        # rascalsChannel = self.bot.get_channel(self.rascalsId)
         runawayChannel = self.bot.get_channel(self.runawayId)
 
         if jellyUsdChannel:
@@ -60,15 +60,16 @@ class UpdatePrice(commands.Cog):
             except Exception as e:
                 print(f"{e} - UpdatePrice-solChannel error")
 
-        if rascalsChannel:
-            self.me.updateCollectionStats()
-            try:
-                rascalsStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
-                await rascalsChannel.edit(name=rascalsStr)
-            except Exception as e:
-                print(f"{e} - UpdatePrice-rascals channel")
+       # if rascalsChannel:
+       #     self.me.updateCollectionStats()
+       #     try:
+       #         rascalsStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
+       #         await rascalsChannel.edit(name=rascalsStr)
+       #     except Exception as e:
+       #         print(f"{e} - UpdatePrice-rascals channel")
 
         if runawayChannel:
+            self.me.updateCollectionStats()
             try:
                 runawayStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
                 await runawayChannel.edit(name=runawayStr)

@@ -14,15 +14,15 @@ class MagicEden:
 
     def updateCollectionStats(self):
         try:
-            resp = requests.get(self.collectionStatsApiUrl("rascals")).json()
-            self.rascalsFP = resp["floorPrice"]
-            self.rascalsListings = resp["listedCount"]
+            #resp = requests.get(self.collectionStatsApiUrl("rascals")).json()
+            #self.rascalsFP = resp["floorPrice"]
+            #self.rascalsListings = resp["listedCount"]
             resp = requests.get(self.collectionStatsApiUrl("runaway_rascals")).json()
             self.runawayFP = resp["floorPrice"]
             self.runawayListings = resp["listedCount"]
         except Exception as e:
             print(f"{e} - MagicEden-updateCollectionStat")
-            self.collectionFP = 0
-            self.collectionListings = 0
+            #self.collectionFP = 0
+            #self.collectionListings = 0
 
     
