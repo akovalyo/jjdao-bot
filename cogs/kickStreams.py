@@ -40,12 +40,7 @@ class KickStreams(commands.Cog):
                             banner = resp["banner_image"]["url"]
                         followers = resp["followersCount"]
                         channel = self.bot.get_channel(self.channelId)
-                        
-                        url="https://kick.com/wolfietv"
-                        profilePic="https://files.kick.com/images/user/372388/profile_image/conversion/e761647e-9c7e-4bb2-bba9-e75ae1b0c28e-fullsize.webp"
-                        followers="351"
-                        banner= "https://files.kick.com/images/channel/363480/banner_image/1b0881ab-8fdd-4541-93fe-01da69911cbb"
-                        
+        
                         embed = discord.Embed(title=f"**{streamer.capitalize()}** is live on Kick", description=f"", color=0x54F513)
                         embed.add_field(name="", value=url)
                         embed.set_footer(text=f"Followers: {followers}")
