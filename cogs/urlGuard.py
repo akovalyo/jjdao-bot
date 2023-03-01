@@ -45,7 +45,7 @@ class UrlGuard(commands.Cog):
         self.logChannelId = 1062582344227233872
         self.guildId = 1052341616427401326
 
-    async def delete_message(self, message):
+    async def delete_message(self, message: discord.Message):
         author = message.author
         channel = message.channel
         guildId = message.guild.id
@@ -62,6 +62,11 @@ class UrlGuard(commands.Cog):
         if (
             message.author.bot == False
             and message.author.guild_permissions.administrator
+        ):
+            return
+        
+        if (
+            message.author.id == 1067223989098917918
         ):
             return
 
