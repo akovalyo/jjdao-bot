@@ -29,7 +29,7 @@ class UpdatePrice(commands.Cog):
     #         )
     #     )
 
-    @tasks.loop(seconds=480)
+    @tasks.loop(seconds=300)
     async def update_left(self):
         jellyUsdStr = "Jelly/SOL: -"
         solUsdStr = "SOL/USD: -"
