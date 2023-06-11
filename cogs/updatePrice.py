@@ -9,8 +9,8 @@ class UpdatePrice(commands.Cog):
         self.me = MagicEden()
         self.bot = bot
         self.jellyUsdChannelId = 1067492731397603370
-        self.solUsdChannelId = 1067492877556523029
-        self.rascalsId = 1069784203643850845
+        # self.solUsdChannelId = 1067492877556523029
+        self.dawgsId = 1067492877556523029
         self.runawayId = 1077278664221278238
         self.update_left.start()
         # self.update_right.start()
@@ -32,12 +32,12 @@ class UpdatePrice(commands.Cog):
     @tasks.loop(seconds=300)
     async def update_left(self):
         jellyUsdStr = "Jelly/SOL: -"
-        solUsdStr = "SOL/USD: -"
+        # solUsdStr = "SOL/USD: -"
         data = None
 
         jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
-        solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
-        # rascalsChannel = self.bot.get_channel(self.rascalsId)
+        # solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
+        dawgsChannel = self.bot.get_channel(self.dawgsId)
         runawayChannel = self.bot.get_channel(self.runawayId)
 
         if jellyUsdChannel:
@@ -50,26 +50,18 @@ class UpdatePrice(commands.Cog):
             except Exception as e:
                 print(f"{e} - UpdatePrice-jellyChannel error")
 
-        if solUsdChannel:
-            self.cp.updateSolUsdPrice()
+        if dawgsChannel:
+            self.me.updateDawgsStats()
 
             try:
-                solUsdStr = f"SOL: ${self.cp.solUsdPrice:.2f}"
+                solUsdStr = f"Dawgs: ◎{(self.me.dawgsFP / 10**9):.2f} ({self.me.dawgsListings})"
                 # print(f"jellyUsdChannel API call: ${self.cp.solUsdPrice:.2f}")
-                await solUsdChannel.edit(name=solUsdStr)
+                await dawgsChannel.edit(name=solUsdStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-solChannel error")
 
-       # if rascalsChannel:
-       #     self.me.updateCollectionStats()
-       #     try:
-       #         rascalsStr = f"Rascals: ◎{(self.me.rascalsFP / 10**9):.2f} ({self.me.rascalsListings})"
-       #         await rascalsChannel.edit(name=rascalsStr)
-       #     except Exception as e:
-       #         print(f"{e} - UpdatePrice-rascals channel")
-
         if runawayChannel:
-            self.me.updateCollectionStats()
+            self.me.updateRunawayStats()
             try:
                 runawayStr = f"RR: ◎{(self.me.runawayFP / 10**9):.2f} ({self.me.runawayListings})"
                 await runawayChannel.edit(name=runawayStr)
