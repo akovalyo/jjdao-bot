@@ -32,11 +32,9 @@ class UpdatePrice(commands.Cog):
     @tasks.loop(seconds=300)
     async def update_left(self):
         jellyUsdStr = "Jelly/SOL: -"
-        # solUsdStr = "SOL/USD: -"
         data = None
 
         jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
-        # solUsdChannel = self.bot.get_channel(self.solUsdChannelId)
         dawgsChannel = self.bot.get_channel(self.dawgsId)
         runawayChannel = self.bot.get_channel(self.runawayId)
 
@@ -45,7 +43,6 @@ class UpdatePrice(commands.Cog):
             self.cp.updateJellySolPrice()
             try:
                 jellyUsdStr = f"Jelly: ${self.cp.jellyUsdPrice:.3f} | ◎{self.cp.jellySolPrice:.3f}"
-                # print(f"jellyUsdChannel API call: ${self.cp.jellyUsdPrice:.3f}")
                 await jellyUsdChannel.edit(name=jellyUsdStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-jellyChannel error")
@@ -54,11 +51,10 @@ class UpdatePrice(commands.Cog):
             self.me.updateDawgsStats()
 
             try:
-                solUsdStr = f"Dawgs: ◎{(self.me.dawgsFP / 10**9):.2f} ({self.me.dawgsListings})"
-                # print(f"jellyUsdChannel API call: ${self.cp.solUsdPrice:.2f}")
-                await dawgsChannel.edit(name=solUsdStr)
+                dawgsStr = f"Dawgs: ◎{(self.me.dawgsFP / 10**9):.2f} ({self.me.dawgsListings})"
+                await dawgsChannel.edit(name=dawgsStr)
             except Exception as e:
-                print(f"{e} - UpdatePrice-solChannel error")
+                print(f"{e} - UpdatePrice-dawgs error")
 
         if runawayChannel:
             self.me.updateRunawayStats()
