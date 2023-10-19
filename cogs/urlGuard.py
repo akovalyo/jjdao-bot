@@ -27,6 +27,7 @@ class UrlGuard(commands.Cog):
             1072246832111026266,
             1072247890812084295,
         ]
+        self.userWhitelist = [1067223989098917918, 712539330039513148]
         self.whitelist = [
             "jellybabiesnft.com",
             "jellydrop.io",
@@ -40,6 +41,8 @@ class UrlGuard(commands.Cog):
             "gfycat.com",
             "discordapp.com",
             "oaidalleapiprodscus.blob.core.windows.net",
+            "monet.community",
+            "https://cr38.solsuite.io/",
         ]
         self.twitterRaidRoom = 1062363541631414344
         self.logChannelId = 1062582344227233872
@@ -65,7 +68,7 @@ class UrlGuard(commands.Cog):
         ):
             return
 
-        if message.author.id == 1067223989098917918:
+        if message.author.id in self.userWhitelist:
             return
 
         if channel.id in self.channelsWhitelist:
