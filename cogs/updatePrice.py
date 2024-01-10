@@ -42,7 +42,7 @@ class UpdatePrice(commands.Cog):
             self.cp.updateJellyUsdPrice()
             self.cp.updateJellySolPrice()
             try:
-                jellyUsdStr = f"Jelly: ${self.cp.jellyUsdPrice:.3f} | ◎{self.cp.jellySolPrice:.3f}"
+                jellyUsdStr = f"Jelly: ${self.cp.jellyUsdPrice:.3f} | ◎{self.cp.jellySolPrice:.4f}"
                 await jellyUsdChannel.edit(name=jellyUsdStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-jellyChannel error")
@@ -51,7 +51,9 @@ class UpdatePrice(commands.Cog):
             self.me.updateDawgsStats()
 
             try:
-                dawgsStr = f"Dawgs: ◎{(self.me.dawgsFP / 10**9):.2f} ({self.me.dawgsListings})"
+                dawgsStr = (
+                    f"Dawgs: ◎{(self.me.dawgsFP / 10**9):.2f} ({self.me.dawgsListings})"
+                )
                 await dawgsChannel.edit(name=dawgsStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-dawgs error")
@@ -63,8 +65,6 @@ class UpdatePrice(commands.Cog):
                 await runawayChannel.edit(name=runawayStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-runaway channel")
-
-        
 
     @update_left.before_loop
     async def before_update_left(self):

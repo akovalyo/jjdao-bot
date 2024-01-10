@@ -10,27 +10,25 @@ class CryptoPrice:
         self.solUsdPrice = 0
         self.upSign = ""
         self.downSign = ""
-        self.jellySolApiUrl = "https://quote-api.jup.ag/v1/price?id=9WMwGcY6TcbSfy9XPpQymY3qNEsvEaYL3wivdwPG2fpp&vsToken=So11111111111111111111111111111111111111112&amount=1"
+        self.jellySolApiUrl = "https://price.jup.ag/v4/price?ids=JELLY&vsToken=SOL"
         self.jellyUsdApiCoingeckoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=jelly-esports&vs_currencies=usd&include_24hr_change=true"
-        self.jellyUsdApiJupUrl = "https://quote-api.jup.ag/v1/price?id=9WMwGcY6TcbSfy9XPpQymY3qNEsvEaYL3wivdwPG2fpp&vsToken=USDC&amount=1"
+        self.jellyUsdApiJupUrl = "https://price.jup.ag/v4/price?ids=JELLY&vsToken=USDC"
         self.solUsdApiCoingeckoUrl = (
             "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd"
         )
 
     def updateJellyUsdPrice(self):
         try:
-            resp = requests.get(self.jellyUsdApiCoingeckoUrl).json()
-            self.jellyUsdPrice = resp["jelly-esports"]["usd"]
-            self.priceChange = resp["jelly-esports"]["usd_24h_change"]
+            resp = requests.get(self.jellyUsdApiJupUrl).json()
+            self.jellyUsdPrice = resp["data"]["price"]
         except Exception as e:
-            print(f"coingecko cryptoprice-updateJellyUsdPrice error: {e}")
+            print(f"jup cryptoprice-updateJellyUsdPrice error: {e}")
             self.priceChange = 0
             try:
-                resp = requests.get(self.jellyUsdApiJupUrl).json()
-                self.jellyUsdPrice = resp["data"]["price"]
-
+                resp = requests.get(self.jellyUsdApiCoingeckoUrl).json()
+                self.jellyUsdPrice = resp["jelly-esports"]["usd"]
             except Exception as e:
-                print(f"Jup cryptoprice-updateJellyUsdPrice error: {e}")
+                print(f"Coingecko cryptoprice-updateJellyUsdPrice error: {e}")
                 self.jellyUsdPrice = 0
 
     def updateJellySolPrice(self):
@@ -40,7 +38,7 @@ class CryptoPrice:
 
         except Exception as e:
             self.jellySolPrice = 0
-            print(f"{e} - cryptoprice-updateJellySolPrice")
+            print(f"Jup cryptoprice-updateJellySolPrice error: {e}")
 
     def updateSolUsdPrice(self):
         try:
