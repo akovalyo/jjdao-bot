@@ -23,14 +23,14 @@ class CryptoPrice:
             self.jellyUsdPrice = resp["jelly-esports"]["usd"]
             self.priceChange = resp["jelly-esports"]["usd_24h_change"]
         except Exception as e:
-            print(f"{e}, cryptoprice-updateJellyUsdPrice")
+            print(f"coingecko cryptoprice-updateJellyUsdPrice error: {e}")
             self.priceChange = 0
             try:
                 resp = requests.get(self.jellyUsdApiJupUrl).json()
                 self.jellyUsdPrice = resp["data"]["price"]
 
             except Exception as e:
-                print(f"{e}, cryptoprice-updateJellyUsdPrice")
+                print(f"Jup cryptoprice-updateJellyUsdPrice error: {e}")
                 self.jellyUsdPrice = 0
 
     def updateJellySolPrice(self):
