@@ -20,7 +20,7 @@ class CryptoPrice:
     def updateJellyUsdPrice(self):
         try:
             resp = requests.get(self.jellyUsdApiJupUrl).json()
-            self.jellyUsdPrice = resp["data"]["price"]
+            self.jellyUsdPrice = resp["data"]["JELLY"]["price"]
         except Exception as e:
             print(f"jup cryptoprice-updateJellyUsdPrice error: {e}")
             self.priceChange = 0
@@ -34,7 +34,7 @@ class CryptoPrice:
     def updateJellySolPrice(self):
         try:
             resp = requests.get(self.jellySolApiUrl).json()
-            self.jellySolPrice = resp["data"]["price"]
+            self.jellySolPrice = resp["data"]["JELLY"]["price"]
 
         except Exception as e:
             self.jellySolPrice = 0
