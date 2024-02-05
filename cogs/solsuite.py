@@ -25,9 +25,10 @@ class Solsuite(commands.Cog):
         required=True,
     )
     @has_ban_perm()
-    async def register_guild(
+    async def send_message(
         self, ctx: discord.ApplicationContext, message: str, category: str
     ):
+        await ctx.defer(ephemeral=True)
         if ctx.guild.id != self.solsuite:
             await ctx.respond(
                 embed=EmbedFactory(

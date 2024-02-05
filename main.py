@@ -46,7 +46,7 @@ def main():
             except Exception as e:
                 print(f"Failed to send a context response: {error}")
 
-    bot.load_extension("cogs.urlGuard")
+    # bot.load_extension("cogs.urlGuard")
     bot.load_extension("cogs.updatePrice")
     bot.load_extension("cogs.solsuite")
     bot.run(token)
