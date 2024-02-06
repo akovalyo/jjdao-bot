@@ -41,10 +41,10 @@ class UpdatePrice(commands.Cog):
         if solUsdChannel:
             self.cp.updateSolUsdPrice()
             try:
-                solUsdStr = f"SOL/USD: ${self.cp.solUsdPrice:.3f} | ◎{self.cp.jellySolPrice:.4f}"
+                solUsdStr = f"SOL/USD: ${self.cp.solUsdPrice:.2f}"
                 await solUsdChannel.edit(name=solUsdStr)
             except Exception as e:
-                print(f"{e} - UpdatePrice-jellyChannel error")
+                print(f"{e} - UpdatePrice-usdSolChannel error")
 
         if dawgsChannel:
             self.me.updateDawgsStats()
