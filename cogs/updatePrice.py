@@ -31,19 +31,18 @@ class UpdatePrice(commands.Cog):
 
     @tasks.loop(seconds=300)
     async def update_left(self):
-        jellyUsdStr = "Jelly/SOL: -"
+        solUsdStr = "SOL/USD: -"
         data = None
 
-        jellyUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
+        solUsdChannel = self.bot.get_channel(self.jellyUsdChannelId)
         dawgsChannel = self.bot.get_channel(self.dawgsId)
         runawayChannel = self.bot.get_channel(self.runawayId)
 
-        if jellyUsdChannel:
-            self.cp.updateJellyUsdPrice()
-            self.cp.updateJellySolPrice()
+        if solUsdChannel:
+            self.cp.updateSolUsdPrice()
             try:
-                jellyUsdStr = f"Jelly: ${self.cp.jellyUsdPrice:.3f} | ◎{self.cp.jellySolPrice:.4f}"
-                await jellyUsdChannel.edit(name=jellyUsdStr)
+                solUsdStr = f"SOL/USD: ${self.cp.solUsdPrice:.3f} | ◎{self.cp.jellySolPrice:.4f}"
+                await solUsdChannel.edit(name=solUsdStr)
             except Exception as e:
                 print(f"{e} - UpdatePrice-jellyChannel error")
 
