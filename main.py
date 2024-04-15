@@ -48,7 +48,7 @@ def main():
 
     # bot.load_extension("cogs.urlGuard")
     bot.load_extension("cogs.updatePrice")
-    bot.load_extension("cogs.solsuite")
+    # bot.load_extension("cogs.solsuite")
     bot.run(token)
 
 
